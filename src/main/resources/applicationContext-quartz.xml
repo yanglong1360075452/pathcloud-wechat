@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="notificationTask" class="com.wizinno.pathcloud.wechat.quartz.NotificationTask">
+    </bean>
+
+    <bean id="checkNotificationListener" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="notificationTask"/>
+        </property>
+        <property name="targetMethod">
+            <value>sampleNotificationCheck</value>
+        </property>
+    </bean>
+
+    <bean id="checkNotificationTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="checkNotificationListener"/>
+        </property>
+        <!--每30分钟执行一次-->
+        <property name="cronExpression">
+            <value>0 0/30 * * * ?</value>
+        </property>
+    </bean>
+
+    <!-- 启动触发器的配置开始 -->
+    <bean id="startQuartz" name="startQuartz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="applicationContextSchedulerContextKey">
+            <value>applicationContext</value>
+        </property>
+        <property name="triggers">
+            <list>
+                <!--<ref bean="checkNotificationTrigger"/>-->
+            </list>
+        </property>
+    </bean>
+    <!-- 启动触发器的配置结束 -->
+
+</beans>

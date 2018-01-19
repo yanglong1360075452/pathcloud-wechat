@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wizinno.pathcloud.wechat.domain.ApplicantMapper">
+  <resultMap id="BaseResultMap" type="com.wizinno.pathcloud.wechat.domain.model.Applicant">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="first_name" jdbcType="VARCHAR" property="firstName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="identity" jdbcType="INTEGER" property="identity" />
+    <result column="tutor" jdbcType="VARCHAR" property="tutor" />
+    <result column="faculty" jdbcType="VARCHAR" property="faculty" />
+    <result column="student_number" jdbcType="VARCHAR" property="studentNumber" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="wno" jdbcType="VARCHAR" property="wno" />
+    <result column="departments" jdbcType="INTEGER" property="departments" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="specialty" jdbcType="VARCHAR" property="specialty" />
+    <result column="project_code" jdbcType="VARCHAR" property="projectCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_self" jdbcType="BIT" property="isSelf" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from applicant
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wizinno.pathcloud.wechat.domain.model.Applicant">
+    insert into applicant (open_id, first_name,
+      phone, identity, tutor, 
+      faculty, student_number, unit, 
+      wno, departments, task_type, 
+      task_name, specialty, project_code,
+      create_time, update_time,is_self)
+    values (#{openId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{identity,jdbcType=INTEGER}, #{tutor,jdbcType=VARCHAR}, 
+      #{faculty,jdbcType=VARCHAR}, #{studentNumber,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{wno,jdbcType=VARCHAR}, #{departments,jdbcType=INTEGER}, #{taskType,jdbcType=INTEGER}, 
+      #{taskName,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{projectCode,jdbcType=VARCHAR}, 
+      now(),now(), #{isSelf,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wizinno.pathcloud.wechat.domain.model.Applicant">
+    update applicant
+    set
+      first_name = #{firstName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=INTEGER},
+      tutor = #{tutor,jdbcType=VARCHAR},
+      faculty = #{faculty,jdbcType=VARCHAR},
+      student_number = #{studentNumber,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      wno = #{wno,jdbcType=VARCHAR},
+      departments = #{departments,jdbcType=INTEGER},
+      task_type = #{taskType,jdbcType=INTEGER},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      specialty = #{specialty,jdbcType=VARCHAR},
+      project_code = #{projectCode,jdbcType=VARCHAR},
+      update_time = now()
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, open_id, first_name, phone, identity, tutor, faculty, student_number, 
+    unit, wno, departments, task_type, task_name, specialty, project_code,  create_time, update_time,is_self
+    from applicant
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, open_id, first_name, phone, identity, tutor, faculty, student_number, 
+    unit, wno, departments, task_type, task_name, specialty, project_code,create_time, update_time,is_self
+    from applicant
+  </select>
+
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.wizinno.pathcloud.wechat.data.condition.ApplicantCondition">
+    select id, open_id, first_name, phone, identity, tutor, faculty, student_number,
+    unit, wno, departments, task_type, task_name, specialty, project_code, create_time, update_time,is_self
+    from applicant
+    <where>
+      <if test="openId != null"> open_id = #{openId,jdbcType=VARCHAR}</if>
+      <if test="isSelf != null"> AND is_self = #{isSelf,jdbcType=BIT}</if>
+    </where>
+    <if test="order != null">ORDER BY ${order}</if>
+    limit #{start,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}
+  </select>
+  <select id="countByCondition" resultType="java.lang.Long" parameterType="com.wizinno.pathcloud.wechat.data.condition.ApplicantCondition">
+    select count(1)  from applicant
+    <where>
+      <if test="openId != null"> open_id = #{openId,jdbcType=VARCHAR}</if>
+      <if test="isSelf != null"> AND is_self = #{isSelf,jdbcType=BIT}</if>
+    </where>
+  </select>
+
+  <update id="updateUserInfo"  parameterType="com.wizinno.pathcloud.wechat.domain.model.Applicant">
+        update applicant
+    set
+      first_name = #{firstName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=INTEGER},
+      tutor = #{tutor,jdbcType=VARCHAR},
+      faculty = #{faculty,jdbcType=VARCHAR},
+      student_number = #{studentNumber,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      wno = #{wno,jdbcType=VARCHAR},
+      departments = #{departments,jdbcType=INTEGER},
+      task_type = #{taskType,jdbcType=INTEGER},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      specialty = #{specialty,jdbcType=VARCHAR},
+      project_code = #{projectCode,jdbcType=VARCHAR},
+      update_time = now()
+    where  open_id = #{openId,jdbcType=VARCHAR} AND is_self is TRUE
+  </update>
+</mapper>

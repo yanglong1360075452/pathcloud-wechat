@@ -1,0 +1,387 @@
+@import '~vux/src/styles/reset.less';
+@import './variable.less';
+
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+i{
+  font-style: normal;
+}
+input,button{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 0.3rem;
+  outline: none;
+  /*letter-spacing:2px;*/
+}
+body{
+  color:#424242;
+  font-size: 0.3rem;
+  font-family: "San Francisco","苹方","Source Han Sans","思源黑体","Microsoft Yahei","微软雅黑";
+  /*letter-spacing:2px;*/
+}
+html,body{
+  background: #f0f0f0;
+}
+@font-face {font-family: "iconfont";
+  src: url('../assets/font/font_ico/iconfont.eot');
+  src: url('../assets/font/font_ico/iconfont.eot#iefix') format('embedded-opentype'),
+  url('../assets/font/font_ico/iconfont.woff') format('woff'),
+  url('../assets/font/font_ico/iconfont.ttf') format('truetype'),
+  url('../assets/font/font_ico/iconfont.svg#css/font_ico/iconfont') format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 删除清空清除图标 */
+  body{
+    .weui-icon-clear:before{
+      margin-right: 0.15rem;
+    }
+  }
+/* vux header */
+  body .vux-header{
+    background: #fff;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 0.3rem;
+    position: fixed ;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    .vux-header-title, h1{
+      color: #000 ;
+      /*font-weight: bold ;*/
+    }
+    .vux-header-right a, .vux-header-right button{
+      color: #0ab6ca ;
+      font-weight: bold;
+      font-size: 0.27rem;
+    }
+    .vux-header-left .left-arrow:before{
+      border-color: #0ab6ca ;
+    }
+  }
+
+/* 必填小星号 */
+  .asterisk::after{
+    content: '';
+    position: absolute;
+    left: 0.34rem;
+    top: 0.36rem;
+    width: 0.14rem;
+    height: 0.14rem;
+    background: url(../assets/img/user_name_i.jpg);
+    /*background: url(../assets/img/up_my.jpg);*/
+    background-size: 100%;
+
+  }
+
+
+/* 下拉小三角 */
+
+  .triangle_i{
+    i{
+      display: inline-block;
+      width: 0.18rem;
+      height: 0.18rem;
+      margin-bottom: 0.05rem;
+      margin-left: 0.1rem;
+      border: 1px solid #ccc;
+      border-width: 1px 0 0 1px;
+      -webkit-transform: rotate(225deg);
+      transform: rotate(225deg);
+    }
+  }
+/* 时间选择蓝色小条 */
+  .select_date_bar{
+    height: 0.54rem;
+    line-height: 0.54rem;
+    text-align: center;
+    background: #83d5e0;
+    color: #fff;
+    font-size: 0.25rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    .today i{
+      display: inline-block;
+      height: 0.12rem;
+      width: 0.12rem;
+      border-bottom: 2px solid #fff;
+      border-left: 2px solid #fff;
+      -webkit-transform: rotate(315deg);
+      transform: rotate(315deg);
+      margin-bottom: 0.02rem;
+      margin-left: 0.03rem;
+    }
+    .last{
+      float: left;
+      width: 23%;
+      height: 0.54rem;
+    }
+    .today{
+      float: left;
+      width: 54%;
+      height: 0.54rem;
+    }
+    .next{
+      float: right;
+      width: 23%;
+      height: 0.54rem;
+    }
+  }
+
+
+/* 页脚蓝色菜单 */
+
+  body .footer.btn{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    text-align: center;
+    background: #0ab6ca;
+    color: #fff;
+  }
+
+
+/* 页脚菜单 */
+  .footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 0.98rem;
+    text-align: center;
+    background: #fff;
+    border-top: 0.01rem solid #aaaaaa;
+    overflow: hidden;
+    z-index: 9;
+
+    >a{
+      width: 33%;
+      height: 100%;
+      float: left;
+      position: relative;
+    }
+    >a i{
+      display: inline-block;
+      width: 0.48rem;
+      height: 0.56rem;
+      margin-top: 0.09rem;
+      -webkit-background-size: 100%;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+    >a:nth-child(1) i{
+      background-image: url(../assets/img/footer11.jpg);
+    }
+    >a:nth-child(2) i{
+      background-image: url(../assets/img/footer21.jpg);
+    }
+    >a:nth-child(3) i{
+      background-image: url(../assets/img/footer31.jpg);
+    }
+    >a:nth-child(1).router-link-active i{
+      background-image: url(../assets/img/footer12.jpg);
+    }
+    >a:nth-child(2).router-link-active i{
+      background-image: url(../assets/img/footer22.jpg);
+    }
+    >a:nth-child(3).router-link-active i{
+      background-image: url(../assets/img/footer32.jpg);
+    }
+    >a span{
+      font-size: 0.2rem;
+      color: #a5afb0;
+      display: block;
+      position: absolute;
+      top: 0.65rem;
+      line-height: 0.3rem;
+      width: 100%;
+    }
+  }
+
+/* 提交 */
+  .submit{
+    height: 0.82rem;
+    line-height: 0.82rem;
+    width: 86%;
+    border-radius: 0.08rem;
+    background: #0AB6CA;
+    font-size: 0.34rem;
+    color: #fff;
+    margin: auto;
+    margin-left: 7%;
+    margin-bottom: 1.74rem;
+  }
+
+/* 基本信息 */
+  .personal_info {
+    overflow: hidden;
+    margin-top: 0.3rem !important;
+  }
+  .dataList{
+    margin-top: 0.38rem !important;
+  }
+  .dataList_box{
+    margin-top: 0 !important;
+  }
+
+/* 复选图标 */
+  .checkbox_ico{
+    position: relative;
+    padding-left: 1.0rem;
+
+    &:after{
+      display: block;
+      width: 0.4rem;
+      height: 0.4rem;
+      background: #000;
+      background: url(../assets/img/select1.png);
+      -webkit-background-size: 100%;
+      background-size: 100%;
+      content:'';
+      position: absolute;
+      left: 0.34rem;
+      top: 0.4rem;
+    }
+  }
+  .checkbox_ico_act{
+
+    &:after{
+      background-image: url(../assets/img/select2.png);
+    }
+  }
+
+
+
+/* 样本 */
+
+  body{
+    .sampleItem .msg_line .weui-cells{
+      margin: 0;
+    }
+    .vux-swipeout-item{
+      background: #fff !important;
+    }
+    /* checker点击时的样式 */
+    .vux-tap-active:active {
+      background: none;
+    }
+  }
+
+
+/* 上拉加载 */
+  .page-loadmore .mint-spinner {
+      display: inline-block;
+      vertical-align: middle;
+  }
+  .page-loadmore-desc {
+      text-align: center;
+      color: #666;
+      padding-bottom: 5px;
+  }
+  .page-loadmore-desc:last-of-type {
+      border-bottom: solid 1px #eee;
+  }
+  .page-loadmore-listitem {
+      min-height: 50px;
+      line-height: 50px;
+      border-bottom: solid 1px #eee;
+      text-align: center;
+  }
+  .page-loadmore-listitem:first-child {
+      border-top: solid 1px #eee;
+  }
+  .page-loadmore-wrapper {
+      overflow: scroll;
+      -webkit-transform:translate3d(0,0,0); /* 使元素具有3D特性，这个属性会使浏览器启动硬件加速。 */
+      -webkit-overflow-scrolling: touch; /* 允许独立的滚动区域和触摸回弹 */
+  }
+  .mint-loadmore-bottom span {
+      display: inline-block;
+      -webkit-transition: .2s linear;
+      transition: .2s linear;
+      vertical-align: middle
+  }
+  .mint-loadmore-bottom span.is-rotate {
+      -webkit-transform: rotate(180deg);
+              transform: rotate(180deg);
+  }
+
+
+  .null{
+    text-align: center;
+    color: #ccc;
+    /*height: 4rem;*/
+    /*line-height: 4rem;*/
+
+
+    color: #ccc;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    position: fixed;
+    top: 50%; left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+
+
+  }
+  body{
+    .weui-cells.vux-search_show{
+      width: 100%;
+      position: fixed;
+      left: 0;
+    }
+    .search_vux .weui-cell_access{
+      text-align: center;
+    }
+    .vux-header-right{
+      right: .7rem !important;
+    }
+    .weui-search-bar__cancel-btn{
+      margin-right: -0.19rem !important;
+    }
+  }
+  .scroller_box{
+    /*margin-bottom: 4rem;*/
+    .no_moer{
+       text-align: center;
+       color: #ccc;
+    }
+    .zw{
+      color: #f0f0f0;
+    }
+  }
+  .scroller_box.search{
+    margin-top: 2rem;
+  }
+  .search_bar{
+    margin-top: 1rem;
+  }
+  .vux-search-box{
+    width: 6.0rem;
+  }
+
+ .no_moer{
+    text-align: center;
+    color: #ccc;
+ }
+ .zw{
+   color: #f0f0f0;
+ }
